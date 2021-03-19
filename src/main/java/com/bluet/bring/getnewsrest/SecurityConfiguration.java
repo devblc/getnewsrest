@@ -1,5 +1,7 @@
 package com.bluet.bring.getnewsrest;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,11 +95,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     	
         
     	final CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowedOrigins(List.of("http://localhost:3000") ); // www - obligatory
-        configuration.setAllowedOrigins(List.of("*"));  //set access from all domains
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+    	//configuration.setAllowedOrigins(List.of("http://localhost:3000") ); // www - obligatory
+    	List<String> allowList = new ArrayList<String>();
+    	List<String> allowMList = new ArrayList<String>();
+    	allowList.add("*");
+    	allowMList = Arrays.asList("GET", "POST", "PUT", "DELETE");    	
+        configuration.setAllowedOrigins(allowList);  //set access from all domains
+        configuration.setAllowedMethods(allowMList);
         configuration.setAllowCredentials(true);
-//        configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
+        //configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
        configuration.setAllowedHeaders(List.of("*"));
 
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
