@@ -98,7 +98,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     	List<String> allowList = new ArrayList<String>();
 
         final CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*"));  //set access from all domains
+        allowList.clear();
+        allowList = Arrays.asList("*");    	
+        configuration.setAllowedOrigins(allowList);  //set access from all domains
         allowList.clear();
         allowList = Arrays.asList("GET", "POST", "PUT", "DELETE");    	
         configuration.setAllowedMethods(allowList);
