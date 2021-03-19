@@ -80,7 +80,7 @@ public class HomeResource {
 		return("<h1>Welcome Admin</h1>");
 	}
 
-	@GetMapping(value = "/get-all", consumes = "application/json", produces = "application/json")
+	@GetMapping(value = "/get-all", produces = "application/json")
 	public ResponseEntity<?> getall(){
     	Optional<List<User>> res;
 		try {
