@@ -50,13 +50,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http
-		.csrf().disable()		
+		.cors()
+		.and()
+		//.csrf().disable()		
 		.authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/auth/sign-in").permitAll()
 		.antMatchers(HttpMethod.POST, "/auth/sign-up").permitAll()
 		.antMatchers("/").permitAll()
 		.anyRequest().authenticated()
-        .and().sessionManagement()
+        .and().sessionManagement()        
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
 		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
@@ -88,7 +90,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		return super.authenticationManagerBean();
 	}
 	
-	
+	/*
     // To enable CORS
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
@@ -113,7 +115,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
         return source;
     }
-
+	*/
 
 
 }
