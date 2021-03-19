@@ -51,7 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http
-		//.cors().and()
+		.cors().and()
 		.csrf().disable()		
 		.authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/auth/sign-in").permitAll()
@@ -90,7 +90,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		return super.authenticationManagerBean();
 	}
 	
-	
+	/*
     // To enable CORS
     @Bean
     public CorsFilter corsConfigurationFilter() {
@@ -108,14 +108,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         allowList.clear();
         Arrays.asList("Authorization", "Cache-Control", "Content-Type");
         configuration.setAllowedHeaders(allowList);
-       configuration.setAllowedHeaders(List.of("*"));
+    	allowList.clear();
+        configuration.setAllowedHeaders(allowList);
 
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
 
-        return source;
+         return source;
     }
 	
-
+	*/
 
 }
