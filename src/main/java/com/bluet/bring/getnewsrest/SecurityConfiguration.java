@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -88,6 +90,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Bean
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
+	}
+	
+	
+    // To enable CORS
+	@Configuration
+	public class CustomCorsConfiguration {
+
+		@Bean
+		public FilterRegistrationBean<CorsFilter> corsFilter() {
+			UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+			CorsConfiguration config = new CorsConfiguration();
+			config.setAllowCredentials(true);
+			config.addAllowedOrigin("http://localhost:8080");
+			config.addAllowedHeader("*");
+			config.addAllowedMethod("*");
+			source.registerCorsConfiguration("/**", config);
+			FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<CorsFilter>(new CorsFilter(source));
+			bean.setOrder(0);
+			return bean;
+		}
 	}
 	
 	/*
