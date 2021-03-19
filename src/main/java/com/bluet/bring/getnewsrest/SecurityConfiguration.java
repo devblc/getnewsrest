@@ -62,7 +62,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		
 		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		
-		//.csrf().disable()		
 		//.antMatchers("/admin").hasRole("ADMIN")
         //.antMatchers("/user").hasAnyRole("ADMIN", "USER")
 		//.and().formLogin()
