@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +23,7 @@ import com.bluet.bring.getnewsrest.auth.service.UserAuthenticationService;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin( origins = "*" )
 public class HomeResource {
 	
 	@Autowired
