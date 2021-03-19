@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bluet.bring.getnewsrest.auth.dto.AuthenticationDto;
@@ -25,6 +26,7 @@ import com.bluet.bring.getnewsrest.repo.INewsRepo;
 
 @RestController
 @CrossOrigin(maxAge = 3600)
+@RequestMapping("/news")
 public class NewsController {
 	
 	@Autowired
@@ -37,8 +39,8 @@ public class NewsController {
 	}
 	
 	
-    @GetMapping(path = "/get", produces = "application/json")
-    public ResponseEntity<?> get() {
+    @GetMapping(path = "/get-all", produces = "application/json")
+    public ResponseEntity<?> getAll() {
         List<?> res;
 		try {
 			res = repo.findAll();
