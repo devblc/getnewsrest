@@ -23,7 +23,7 @@ import com.bluet.bring.getnewsrest.auth.service.UserAuthenticationService;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "http://localhost", maxAge = 3600)
+@CrossOrigin(maxAge = 3600)
 public class HomeResource {
 	
 	@Autowired

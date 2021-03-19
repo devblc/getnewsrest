@@ -24,7 +24,7 @@ import com.bluet.bring.getnewsrest.models.News;
 import com.bluet.bring.getnewsrest.repo.INewsRepo;
 
 @RestController
-@CrossOrigin(origins = "http://localhost", maxAge = 3600)
+@CrossOrigin(maxAge = 3600)
 public class NewsController {
 	
 	@Autowired
