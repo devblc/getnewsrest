@@ -52,8 +52,8 @@ public class NewsController {
     }
 
 
-    @PostMapping("/insert")
-    public ResponseEntity<?> insert(@RequestBody News news) {
+    @PostMapping(path = "/add", consumes = "application/json")
+    public ResponseEntity<?> Add(@RequestBody News news) {
     	News res;
 		try {
 			res = repo.insert(news);
