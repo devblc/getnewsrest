@@ -33,7 +33,7 @@ public class NewsController {
 	
 	@GetMapping("/")
 	public ResponseEntity<String> getNewsTitle() {
-		return new ResponseEntity<String>("News Rest is on", HttpStatus.OK);
+		return new ResponseEntity<String>("News Rest Web is on", HttpStatus.OK);
 	}
 	
 	
