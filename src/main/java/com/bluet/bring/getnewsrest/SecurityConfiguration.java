@@ -89,6 +89,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		return super.authenticationManagerBean();
 	}
 	
+	/*
     // To enable CORS
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
@@ -116,23 +117,42 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
         return source;
     }
-
-    /*
+	*/
+	
+    
     // To enable CORS
 	@Bean
-	public FilterRegistrationBean<CorsFilter> corsFilter() {
+	public CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		
+    	List<String> allowList = new ArrayList<String>();
+
+        //allowList.clear();
+        //allowList = Arrays.asList("*");    	
+        //configuration.setAllowedHeaders(allowList);		
+		
+		
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
-		config.addAllowedOrigin("*");
-		config.addAllowedHeader("*");
-		config.addAllowedMethod("*");
-		source.registerCorsConfiguration("/**", config);
-		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<CorsFilter>(new CorsFilter(source));
-		bean.setOrder(0);
+        //allowList.clear();
+        //allowList = Arrays.asList("*");    	
+        config.setAllowedOrigins(Arrays.asList("*"));  //set access from all domains
+
+        //allowList.clear();
+        //allowList = Arrays.asList("Authorization", "Cache-Control", "Content-Type");
+        config.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+		
+        //allowList.clear();
+        //allowList = Arrays.asList("GET", "POST", "PUT", "DELETE");    	
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+		
+        source.registerCorsConfiguration("/**", config);
+		CorsFilter bean = new CorsFilter(source);
+		
 		return bean;
+		
 	}
-	*/
+	
 	
 
 	/*
