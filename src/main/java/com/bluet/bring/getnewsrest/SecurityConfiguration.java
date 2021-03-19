@@ -89,48 +89,32 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		return super.authenticationManagerBean();
 	}
 	
-	/*
+	
     // To enable CORS
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
     	
         
-    	List<String> allowList = new ArrayList<String>();
 
         final CorsConfiguration configuration = new CorsConfiguration();
-        allowList.clear();
-        allowList = Arrays.asList("*");    	
-        configuration.setAllowedOrigins(allowList);  //set access from all domains
-        allowList.clear();
-        allowList = Arrays.asList("GET", "POST", "PUT", "DELETE");    	
-        configuration.setAllowedMethods(allowList);
+        configuration.setAllowedOrigins(Arrays.asList("*"));  //set access from all domains
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowCredentials(true);
-        allowList.clear();
-        allowList = Arrays.asList("Authorization", "Cache-Control", "Content-Type");
-        configuration.setAllowedHeaders(allowList);
-        allowList.clear();
-        allowList = Arrays.asList("*");    	
-       configuration.setAllowedHeaders(allowList);
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
 
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
 
         return source;
     }
-	*/
 	
-    
+	
+	/*
     // To enable CORS
 	@Bean
 	public CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		
-    	List<String> allowList = new ArrayList<String>();
-
-        //allowList.clear();
-        //allowList = Arrays.asList("*");    	
-        //configuration.setAllowedHeaders(allowList);		
-		
 		
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
@@ -152,35 +136,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		return bean;
 		
 	}
-	
-	
-
-	/*
-    // To enable CORS
-    @Bean
-    public CorsFilter corsFilter() {
-    	
-    	final CorsConfiguration configuration = new CorsConfiguration();
-    	//configuration.setAllowedOrigins(List.of("http://localhost:3000") ); // www - obligatory
-    	List<String> allowList = new ArrayList<String>();
-    	allowList.add("*");
-        configuration.setAllowedOrigins(allowList);  //set access from all domains
-    	allowList.clear();
-        allowList = Arrays.asList("GET", "POST", "PUT", "DELETE");    	
-        configuration.setAllowedMethods(allowList);
-        configuration.setAllowCredentials(true);
-        allowList.clear();
-        Arrays.asList("Authorization", "Cache-Control", "Content-Type");
-        configuration.setAllowedHeaders(allowList);
-    	allowList.clear();
-        configuration.setAllowedHeaders(allowList);
-
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-
-         return source;
-    }
-	
 	*/
+	
+
 
 }
