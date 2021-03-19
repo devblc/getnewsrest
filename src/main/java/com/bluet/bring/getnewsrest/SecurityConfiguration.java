@@ -104,7 +104,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         allowList = Arrays.asList("GET", "POST", "PUT", "DELETE");    	
         configuration.setAllowedMethods(allowList);
         configuration.setAllowCredentials(true);
-        //configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
+        allowList.clear();
+        allowList = Arrays.asList("Authorization", "Cache-Control", "Content-Type");
+        configuration.setAllowedHeaders(allowList);
         allowList.clear();
         allowList = Arrays.asList("*");    	
        configuration.setAllowedHeaders(allowList);
