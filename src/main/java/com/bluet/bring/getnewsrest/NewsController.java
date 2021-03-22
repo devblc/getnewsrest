@@ -2,6 +2,10 @@ package com.bluet.bring.getnewsrest;
 
 
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,7 +69,7 @@ public class NewsController {
 
 
     @PutMapping(value = "update/{id}", produces = "application/json")
-    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody News news) {
+    public ResponseEntity<?> update(@PathVariable("id") String id, @RequestBody News news) {
     	Optional<News> findIfExist;
     	News res;
 		try {
@@ -87,7 +91,7 @@ public class NewsController {
      * delete mews
      */
     @DeleteMapping(value = "delete/{id}", produces = "application/json")
-    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<?> delete(@PathVariable("id") String id) {
     	Optional<News> res;
 		try {
 			res = repo.findById(id);
@@ -103,7 +107,7 @@ public class NewsController {
     }
     
     @GetMapping(value = "/getbyid/{id}", produces = "application/json")
-    public ResponseEntity<?> getbyId(@PathVariable("id") Long id) {
+    public ResponseEntity<?> getbyId(@PathVariable("id") String id) {
     	Optional<News> res;
 		try {
 			res = repo.findById(id);
@@ -116,4 +120,41 @@ public class NewsController {
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(res.get());
     }
+
+
+    @PostMapping(path = "/add-list", consumes = "application/json")
+    public ResponseEntity<?> AddList(@RequestBody List<News> items) {
+    	List<News> res;
+		try {
+			items.forEach(item -> {				
+				item.setId( toHexString(generateSequence(item.getTitle())) );
+			});
+			res = repo.insert(items);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
+    	return ResponseEntity.ok(res);
+    }
+
+   
+    private byte[] generateSequence(String seq) {
+    	MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance("SHA-256");
+		} catch (NoSuchAlgorithmException e) {
+			System.out.print(e.getMessage());
+		} 
+    	return md.digest(seq.getBytes(StandardCharsets.UTF_8)); 
+    }
+    
+    // Convert byte array into signum representation  
+    public String toHexString(byte[] hash) 
+    { 
+        BigInteger number = new BigInteger(1, hash);    
+        StringBuilder hexString = new StringBuilder(number.toString(16));
+        
+        return hexString.toString();  
+   } 
+
+    
 }
