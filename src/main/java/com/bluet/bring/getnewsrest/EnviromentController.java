@@ -21,7 +21,7 @@ import com.bluet.bring.getnewsrest.repo.IEnviromentRepo;
 
 @RestController
 @CrossOrigin(maxAge = 3600)
-@RequestMapping("/enviroment")
+@RequestMapping("/env")
 public class EnviromentController {
 
 	@Autowired
@@ -39,7 +39,7 @@ public class EnviromentController {
     }
     
     
-    @GetMapping(path = "/get-all", produces = "application/json")
+    @GetMapping(path = "/hdm/get-all", produces = "application/json")
     public ResponseEntity<?> getAll() {
         List<?> res;
 		try {

@@ -4,8 +4,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+
+
+
 @Document
 public class MainMenu {
+
 
 	@Id
 	@Field(name = "_id")
@@ -14,6 +18,9 @@ public class MainMenu {
 	private String title;
 	private String path;
 	private int displayOrder;
+	private String rootMenu;
+	
+	
 	
 	public MainMenu() {
 		
@@ -50,6 +57,14 @@ public class MainMenu {
 
 	public void setDisplayOrder(int displayOrder) {
 		this.displayOrder = displayOrder;
+	}
+
+	public String getRootMenu() {
+		return rootMenu;
+	}
+
+	public void setRootMenu(String rootMenu) {
+		this.rootMenu = rootMenu;
 	}
 
 }

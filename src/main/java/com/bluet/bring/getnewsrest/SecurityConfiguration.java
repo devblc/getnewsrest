@@ -1,6 +1,9 @@
 package com.bluet.bring.getnewsrest;
 
 import java.util.Arrays;
+
+import javax.annotation.security.PermitAll;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -49,6 +52,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/auth/sign-in").permitAll()
 		.antMatchers(HttpMethod.POST, "/auth/sign-up").permitAll()
+		.antMatchers(HttpMethod.GET, "/news/get-all").permitAll()
+		.antMatchers(HttpMethod.GET, "/env/hdm/get-all").permitAll()
 		.antMatchers("/").permitAll()
 		.anyRequest().authenticated()
         .and().sessionManagement()        
