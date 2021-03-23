@@ -110,7 +110,7 @@ public class NewsController {
 		return ResponseEntity.status(HttpStatus.OK).body(res.get());
     }
     
-    @GetMapping(value = "/getbyid/{id}", produces = "application/json")
+    @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<?> getbyId(@PathVariable("id") String id) {
     	Optional<News> res;
 		try {
