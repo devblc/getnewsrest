@@ -6,11 +6,15 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -47,7 +51,7 @@ public class NewsController {
     public ResponseEntity<?> getAll() {
         List<?> res;
 		try {
-			res = repo.findAll();
+			res = repo.findAll(Sort.by(Sort.Direction.ASC, "publishedAt"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -127,7 +131,7 @@ public class NewsController {
     	List<News> res;
 		try {
 			items.forEach(item -> {				
-				item.setId( toHexString(generateSequence(item.getTitle())) );
+				item.setId( toHexString(generateSequence(item.getTitle())) );  //gen256 a id
 			});
 			res = repo.insert(items);
 		} catch (Exception e) {

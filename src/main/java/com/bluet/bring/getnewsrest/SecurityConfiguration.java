@@ -1,11 +1,7 @@
 package com.bluet.bring.getnewsrest;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,8 +18,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
-
 import com.bluet.bring.getnewsrest.auth.JwtRequestFilter;
 import com.bluet.bring.getnewsrest.auth.service.UserAuthenticationService;
 
@@ -55,8 +49,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/auth/sign-in").permitAll()
 		.antMatchers(HttpMethod.POST, "/auth/sign-up").permitAll()
-		.antMatchers(HttpMethod.GET, "/news/get-all").permitAll()
-		.antMatchers(HttpMethod.POST, "/news/add").permitAll()
 		.antMatchers("/").permitAll()
 		.anyRequest().authenticated()
         .and().sessionManagement()        
