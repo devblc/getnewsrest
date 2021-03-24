@@ -43,7 +43,7 @@ public class EnviromentController {
     public ResponseEntity<?> getAll() {
         List<?> res;
 		try {
-			res = repo.findAll(Sort.by(Sort.Direction.ASC, "title"));
+			res = repo.findAll(Sort.by(Sort.Direction.ASC, "displayOrder"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
