@@ -2,30 +2,33 @@ package com.bluet.bring.getnewsrest.auth.models;
 
 
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document
 public class User {
 
-	//@Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+	@Id
+    @Field(name = "_id")
+    private String id;
 	
-	//@Column(length = 50)
-    private String userName;
+    public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	private String userName;
+
+    private String nickName;
 
 	//@Column(length = 60)
     private String password;
     private boolean active;
     private String roles;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getUserName() {
         return userName;
@@ -58,4 +61,12 @@ public class User {
     public void setRoles(String roles) {
         this.roles = roles;
     }
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 }

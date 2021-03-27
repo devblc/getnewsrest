@@ -50,8 +50,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.cors().and()
 		.csrf().disable()
 		.authorizeRequests()
-		.antMatchers(HttpMethod.POST, "/auth/sign-in").permitAll()
-		.antMatchers(HttpMethod.POST, "/auth/sign-up").permitAll()
+//		.antMatchers(HttpMethod.POST, "/auth/sign-in").permitAll()
+//		.antMatchers(HttpMethod.POST, "/auth/sign-up").permitAll()
+		.antMatchers(AUTH_WHITELIST).permitAll()		//001 - FOR SWAGGER RELEASE
 		.antMatchers(HttpMethod.GET, "/news/**").permitAll()
 		.antMatchers(HttpMethod.GET, "/env/hdm/get-all").permitAll()
 		.antMatchers("/").permitAll()
@@ -110,6 +111,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
        
         return source;
     }
+    
+    
+    private static final String[] AUTH_WHITELIST = {
+            // -- Swagger UI v2
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            // -- Swagger UI v3 (OpenAPI)
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            // -- login endpoint
+            "/auth/sign-in",
+            "/auth/sign-up"
+            // other public endpoints if API may be appended to this array
+    };
+
 	
 	
 	/*

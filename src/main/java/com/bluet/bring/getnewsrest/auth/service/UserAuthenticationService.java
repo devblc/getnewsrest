@@ -20,6 +20,7 @@ import com.bluet.bring.getnewsrest.auth.dto.SignUpDto;
 import com.bluet.bring.getnewsrest.auth.exceptions.EmailAlreadyExistException;
 import com.bluet.bring.getnewsrest.auth.models.User;
 import com.bluet.bring.getnewsrest.auth.repo.UserRepository;
+import com.bluet.bring.getnewsrest.utils.Utils;
 
 
 @Service
@@ -42,6 +43,7 @@ public class UserAuthenticationService {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
 
 	public UserAuthenticationService() {
 		super();
@@ -81,6 +83,8 @@ public class UserAuthenticationService {
 		
 		User user = new User();
 	    user.setUserName(userRegDto.getUserName());
+	    Utils utl = new Utils();
+	    user.setId( utl.toHexString(utl.generateSequence(user.getUserName(), "MD5")) ); // transform email into unique id "mongo does not have sequence"
 	    user.setPassword(passwordEncoder.encode(userRegDto.getPassword()));
 	    user.setRoles("ADMIN");
 	    
