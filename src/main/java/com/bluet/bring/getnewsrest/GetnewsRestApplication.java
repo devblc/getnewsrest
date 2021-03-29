@@ -6,8 +6,13 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 
 @SpringBootApplication
-@EnableMongoRepositories(basePackages = {"com.bluet.bring.getnewsrest.repo", 
-		"com.bluet.bring.getnewsrest.auth.repo", "com.bluet.bring.getnewsrest.auth.service"})
+@EnableMongoRepositories(basePackages = {
+		"com.bluet.bring.getnewsrest.repo", 
+		"com.bluet.bring.getnewsrest.auth.repo", 
+		"com.bluet.bring.getnewsrest.auth.service",
+		"com.bluet.bring.getnewsrest.providers.repo", 
+		"com.bluet.bring.getnewsrest.blogbuilder.repo" 
+		})
 public class GetnewsRestApplication {
 
 	public static void main(String[] args) {

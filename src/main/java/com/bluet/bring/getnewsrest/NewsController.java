@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bluet.bring.getnewsrest.auth.dto.AuthenticationDto;
 import com.bluet.bring.getnewsrest.auth.service.UserAuthenticationService;
 import com.bluet.bring.getnewsrest.models.News;
+import com.bluet.bring.getnewsrest.providers.models.MoviesProviders;
 import com.bluet.bring.getnewsrest.repo.INewsRepo;
 
 @RestController

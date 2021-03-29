@@ -127,7 +127,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
             "/swagger-ui/**",
             // -- login endpoint
             "/auth/sign-in",
-            "/auth/sign-up"
+            "/auth/sign-up",
+            "/scrapers/**"
             // other public endpoints if API may be appended to this array
     };
 
