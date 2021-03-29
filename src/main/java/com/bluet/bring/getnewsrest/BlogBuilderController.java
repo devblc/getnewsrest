@@ -41,7 +41,7 @@ public class BlogBuilderController {
         Optional<Profile> res;
 		try {
 			res = srv.getProfile(id);
-			if (res.isEmpty()){
+			if (!res.isPresent()){
 				throw new ProfileNotFoundException(lang);
 			}
 		} catch(ProfileNotFoundException e) {
